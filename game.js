@@ -74,8 +74,18 @@ class Game {
     return array;
   }
 
-  dealCards() {
-    
+  dealCards(deck, handOne, handTwo) {
+    var playerOne = new Player()
+    var playerTwo = new Player()
+    var newDeck = shuffle(deck);
+    for (i = newDeck.length-1; i >= 0; i--) {
+      if (i % 2 === 0) {
+        handOne.push(newDeck[i])
+      } else {
+        handTwo.push(newDeck[i])
+      }
+    }
+    return [handOne, handTwo];
   }
 
   slapPile() {
