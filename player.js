@@ -5,11 +5,14 @@ class Player {
     this.hand = [];
   }
 
-  playCard() {
-
+  playCard(player) {
+    var cardPlayed = player.hand.splice(0, 1);
+    this.centerPile.push(cardPlayed);
   }
 
   saveWinsToStorage() {
     
   }
 }
+
+module.exports = Player;
