@@ -5,9 +5,22 @@ class Player {
     this.hand = [];
   }
 
-  playCard() {
+  playCard(game) {
     var cardPlayed = this.hand.splice(0, 1);
-    return cardPlayed;
+    game.centerPile.push(cardPlayed);
+  }
+
+  slapPile(game) {
+    var nonSlapper = checkSlapper(this);
+    if (!(isJack() || isDouble() || isSandwich())) {
+      var topCard = this.hand.shift();
+      game[nonSlapper].hand.push(topCard);
+    } else {
+      for (var i = 0; i < game.centerPile.length; i++) {
+        this.hand.push(game.centerPile[i])
+        game.shuffleDeck(this.hand)
+      }
+    }
   }
 
   saveWinsToStorage() {
