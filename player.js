@@ -12,12 +12,13 @@ class Player {
 
   slapPile(game) {
     var nonSlapper = checkSlapper(this);
-    if (!(isJack() || isDouble() || isSandwich())) {
+    if (isJack() || isDouble() || isSandwich()) {
       var topCard = this.hand.shift();
       game[nonSlapper].hand.push(topCard);
     } else {
       for (var i = 0; i < game.centerPile.length; i++) {
         this.hand.push(game.centerPile[i])
+        game.centerPile = [];
         game.shuffleDeck(this.hand)
       }
     }
