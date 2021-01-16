@@ -7,7 +7,7 @@ class Player {
 
   playCard(game) {
     var cardPlayed = this.hand.splice(0, 1);
-    game.centerPile.push(cardPlayed);
+    game.centerPile.shift(cardPlayed);
   }
 
   slapPile(game) {
