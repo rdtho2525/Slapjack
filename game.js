@@ -1,7 +1,7 @@
 class Game {
   constructor() {
-    this.playerOne = new Player();
-    this.playerTwo = new Player();
+    this.playerOne = new Player('playerOne');
+    this.playerTwo = new Player('playerTwo');
     this.deck = [
     {type: 'blue', value: 1, image: './card-deck-assets/blue-01.png'},
     {type: 'blue', value: 2, image: './card-deck-assets/blue-02.png'},
@@ -57,7 +57,7 @@ class Game {
     {type: 'red', value: 'king', image: './card-deck-assets/red-king.png'},
     {type: 'none', value: 'wild', image: 'wild.png'}
     ];
-    this.centerPile = []
+    this.centerPile = [];
   };
 
   shuffleDeck(array) {
@@ -72,22 +72,30 @@ class Game {
     return array;
   }
 
-  dealCards(deck, handOne, handTwo) {
-    var playerOne = new Player()
-    var playerTwo = new Player()
-    var newDeck = shuffle(deck);
+  dealCards() {
+    var newDeck = shuffleDeck(this.deck);
     for (i = newDeck.length-1; i >= 0; i--) {
       if (i % 2 === 0) {
-        handOne.push(newDeck[i])
+        this.playerOne.hand.push(newDeck[i])
       } else {
-        handTwo.push(newDeck[i])
+        this.playerTwo.hand.push(newDeck[i])
       }
     }
-    return [handOne, handTwo];
   }
 
-  slapPile() {
-    
+  slapPile(event) {
+    //determine slapper
+    //var slapper = event.target.value
+    //check for jack, double, sandwich, none
+    if (!(isJack() || isDouble() || isSandwich())) {
+      var topCard = /*slapper*/.hand.shift();
+      /*nonSlapper*/.hand.push(topCard);
+    } else {
+      for (i = 0; i < this.centerPile.length; i++) {
+        /*slapper*/.hand.push(this.centerPile[i])
+      }
+      shuffleDeck()
+    }
   }
 
   pronounceWinner(player) {
