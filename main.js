@@ -65,6 +65,15 @@ function checkOpponent(player) {
   return opponent
 }
 
+function checkDeck(player) {
+  var hasCards;
+  if(player.hand.length > 0) {
+    hasCards = true
+  } else {
+    hasCards = false
+  }
+}
+
 function takePile(player, game) {
   for (var i = 0; i < game.centerPile.length; i++) {
     player.hand.push(game.centerPile[i]);

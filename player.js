@@ -8,7 +8,7 @@ class Player {
   }
 
   playCard(game) {
-    if((this.turn === true || game[this.opponent].hand.length === 0) && this.hand.length !== 0) {
+    if((this.turn === true || game[this.opponent].hand.length === 0) && checkDeck(this)) {
       this.turn = false;
       var cardPlayed = this.hand.splice(0, 1)[0];
       game.centerPile.unshift(cardPlayed);
