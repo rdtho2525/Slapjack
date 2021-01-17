@@ -6,20 +6,30 @@ class Player {
   }
 
   playCard(game) {
-    var cardPlayed = this.hand.splice(0, 1);
+    var cardPlayed = this.hand.splice(0, 1)[0];
     game.centerPile.unshift(cardPlayed);
   }
 
   slapPile(game) {
+    var output;
     var nonSlapper = checkSlapper(this);
-    if (!(isJack() || isDouble() || isSandwich())) {
-      var topCard = this.hand.shift();
-      game[nonSlapper].hand.push(topCard);
+    if (isJack() || isDouble() || isSandwich()) {
+      console.log('valid slap')
+      console.log('Jack?', isJack())
+      console.log('Double?', isDouble())
+      console.log('Sandwich?', isSandwich());
+      takePile(this, game)
+      output = true;
     } else {
-      for (var i = 0; i < game.centerPile.length; i++) {
-        this.hand.push(game.centerPile[i])
-        game.shuffleDeck(this.hand)
-      }
+        console.log('invalid slap')
+        var topCard = this.hand.shift();
+        game[nonSlapper].hand.push(topCard);
+        output = false;
+    }
+
+    if (output === true) {
+      clearPile(game)
+      game.shuffleDeck(this.hand)
     }
   }
 
