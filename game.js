@@ -145,6 +145,5 @@ class Game {
     {type: 'red', value: 'king', image: './card-deck-assets/red-king.png'},
     {type: 'none', value: 'wild', image: 'wild.png'}
     ];
-    clearPile(this);
   }
 }
