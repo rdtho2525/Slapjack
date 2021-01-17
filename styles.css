@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   margin: 0;
   padding: 0;
 }
@@ -56,4 +56,13 @@ aside {
 
 .pile {
   box-shadow: -12px -5px 2px 1px rgba(255,255,255, 0.3);
+}
+
+.pile > img {
+  max-height: 100%;
+  max-width: 100%;
+  width: 300px;
+  margin: 0;
+  border: 1px solid #FFF;
+  border-radius: 10px;
 }
