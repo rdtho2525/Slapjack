@@ -72,6 +72,7 @@ function checkDeck(player) {
   } else {
     hasCards = false
   }
+  return hasCards
 }
 
 function takePile(player, game) {
@@ -83,6 +84,8 @@ function takePile(player, game) {
 function clearPile(game) {
     game.centerPile = []
 }
+
+
 
 function playGame(event) {
   var keyPressed = String.fromCharCode(event.keyCode);
@@ -108,5 +111,19 @@ function playGame(event) {
     console.log(keyPressed)
     console.log('Keep trying!')
   }
-  console.log(slapjack.centerPile)
+  displayTopCard()
+}
+
+function displayTopCard() {
+  if (slapjack.centerPile.length > 0) {
+    var topCardImage = slapjack.centerPile[0].image;
+    var topCardType = slapjack.centerPile[0].type;
+    var topCardValue = slapjack.centerPile[0].value;
+    unhide(centerPileNode)
+    centerPileNode.innerHTML =
+    `<img id="topCard" src=${topCardImage} alt="${topCardType} ${topCardValue}">`
+    console.log(slapjack.centerPile)
+  } else {
+    hide(centerPileNode)
+  }
 }
