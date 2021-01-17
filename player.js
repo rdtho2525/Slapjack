@@ -37,7 +37,10 @@ class Player {
     if (game.centerPile.length === 0 && !checkDeck(game[this.opponent])) {
       game.pronounceWinner(this)
       game.resetDeck()
-      console.log(`${this.id} wins!`)
+      clearPile(this);
+      this.hand = [];
+      game[this.opponent].hand = [];
+      // console.log(`${this.id} wins!`)
     }
   }
 
