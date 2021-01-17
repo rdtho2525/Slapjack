@@ -5,14 +5,12 @@ var centerPileNode = document.querySelector('#centerPile');
 
 //Global Variables
 var slapjack = new Game();
+// var p1;
+// var p2;
 
 
 //Event listeners
-  //when playerOne hits 'q', playCard
-  //when playerOne hits 'f', slapPile
-
-  //when playerTwo hits 'p', playCard
-  //when playerTwo hits 'j', slapPile
+document.addEventListener('keypress', playGame);
 
 //Functions
 function hide(element) {
@@ -25,7 +23,6 @@ function unhide(element) {
 
 function isJack() {
   if (slapjack.centerPile[0].value === 'jack') {
-    // console.log('Jack?:', slapjack.centerPile[0].value)
     return true
   } else {
     return false
@@ -48,6 +45,16 @@ function isSandwich() {
   }
 }
 
+function isWild() {
+  for (var i = 0; i < 4; i++) {
+    if (slapjack.centerPile[i].value === 'wild') {
+      return true
+    } else {
+      return false
+    }
+  }
+}
+
 function checkOpponent(player) {
   var opponent;
   if (player.id === 'playerOne') {
@@ -58,11 +65,9 @@ function checkOpponent(player) {
   return opponent
 }
 
-
-
 function takePile(player, game) {
   for (var i = 0; i < game.centerPile.length; i++) {
-    player.hand.push(game.centerPile[i])
+    player.hand.push(game.centerPile[i]);
   }
 }
 
@@ -70,20 +75,29 @@ function clearPile(game) {
     game.centerPile = []
 }
 
-function findKey() {
-  var keyFinder = event.which;
-  var keyStroke = String.fromCharCode(keyFinder);
-  return keyStroke
-}
-
-function playCardPlayerOne() {
-  var p1 = slapjack.playerOne
-  findKey()
-  if (keyStroke() === 'q') {
-      p1.playCard(slapjack);
-      centerPileNode.innerHTML =
-      `<image src="${slapjack.centerPile[0].image}" alt="${slapjack.centerPile[0].type} ${slapjack.centerPile[0].value}">`
+function playGame(event) {
+  var keyPressed = String.fromCharCode(event.keyCode);
+  var p1 = slapjack.playerOne;
+  var p2 = slapjack.playerTwo;
+  if (keyPressed == 'q') {
+    p1.playCard(slapjack)
+    console.log(keyPressed)
+    console.log('Player One dealt a card!')
+  } else if (keyPressed == 'f') {
+    p1.slapPile(slapjack)
+    console.log(keyPressed)
+    console.log('Player One slapped the pile!')
+  } else if (keyPressed == 'p') {
+    p2.playCard(slapjack)
+    console.log(keyPressed)
+    console.log('Player Two dealt a card!')
+  } else if (keyPressed == 'j') {
+    p2.slapPile(slapjack)
+    console.log(keyPressed)
+    console.log('Player Two slapped the pile!')
   } else {
-    return
+    console.log(keyPressed)
+    console.log('Keep trying!')
   }
+  console.log(slapjack.centerPile)
 }
