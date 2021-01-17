@@ -41,7 +41,7 @@ class Game {
     {type: 'green', value: 10, image: './card-deck-assets/green-10.png'},
     {type: 'green', value: 'jack', image: './card-deck-assets/green-jack.png'},
     {type: 'green', value: 'queen', image: './card-deck-assets/green-queen.png'},
-    {type: 'green', value: 'king', image: './card-deck-assets/green-king.png'},    './card-deck-assets/green-01.png',
+    {type: 'green', value: 'king', image: './card-deck-assets/green-king.png'},
     {type: 'red', value: 1, image: './card-deck-assets/red-01.png'},
     {type: 'red', value: 2, image: './card-deck-assets/red-02.png'},
     {type: 'red', value: 3, image: './card-deck-assets/red-03.png'},
@@ -90,8 +90,6 @@ class Game {
   }
 
   resetDeck() {
-    this.playerOne.wins = 0;
-    this.playerTwo.wins = 0;
     this.deck = [
     {type: 'blue', value: 1, image: './card-deck-assets/blue-01.png'},
     {type: 'blue', value: 2, image: './card-deck-assets/blue-02.png'},
@@ -147,6 +145,6 @@ class Game {
     {type: 'red', value: 'king', image: './card-deck-assets/red-king.png'},
     {type: 'none', value: 'wild', image: 'wild.png'}
     ];
-    this.centerPile = [];
+    clearPile(this);
   }
 }
