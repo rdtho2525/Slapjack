@@ -55,7 +55,7 @@ class Game {
     {type: 'red', value: 'jack', image: './card-deck-assets/red-jack.png'},
     {type: 'red', value: 'queen', image: './card-deck-assets/red-queen.png'},
     {type: 'red', value: 'king', image: './card-deck-assets/red-king.png'},
-    {type: 'none', value: 'wild', image: 'wild.png'}
+    {type: 'wild', value: 'wild', image: './card-deck-assets/wild.png'}
     ];
     this.centerPile = [];
   };
