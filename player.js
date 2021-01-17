@@ -8,21 +8,19 @@ class Player {
   }
 
   playCard(game) {
-    // var opponent = checkOpponent(this)
-    if(this.turn === true || game[this.opponent].hand.length === 0) {
+    if((this.turn === true || game[this.opponent].hand.length === 0) && this.hand.length !== 0) {
       this.turn = false;
       var cardPlayed = this.hand.splice(0, 1)[0];
       game.centerPile.unshift(cardPlayed);
       game[this.opponent].turn = true;
     } else {
-      console.log('Player cannot play twice unless opponent is out of cards!')
+      console.log('Invalid action! Player either has no cards or tried to play twice in a row.')
     }
   }
 
   slapPile(game) {
     var output;
-    // var opponent = checkOpponent(this);
-    if (isJack() || isDouble() || isSandwich()) {
+    if (isJack() || isDouble() || isSandwich() || isWild()) {
       takePile(this, game)
       output = true;
     } else {
@@ -34,6 +32,11 @@ class Player {
     if (output === true) {
       clearPile(game)
       game.shuffleDeck(this.hand)
+    }
+
+    if (game.centerPile.length === 0 && game[this.opponent].hand.length === 0) {
+      game.pronounceWinner(this)
+      console.log(`${this.id} wins!`)
     }
   }
 
