@@ -34,8 +34,9 @@ class Player {
       game.shuffleDeck(this.hand)
     }
 
-    if (game.centerPile.length === 0 && game[this.opponent].hand.length === 0) {
+    if (game.centerPile.length === 0 && !checkDeck(game[this.opponent])) {
       game.pronounceWinner(this)
+      game.resetDeck()
       console.log(`${this.id} wins!`)
     }
   }
