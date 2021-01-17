@@ -46,7 +46,6 @@ section {
   margin: 0 auto;
   border: 1.5px solid #FFF;
   border-radius: 10px;
-  cursor: pointer;
 }
 
 aside {
@@ -67,6 +66,28 @@ aside {
   border-radius: 10px;
 }
 
+.deal-cards-button {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #FFF;
+  border-radius: 50%;
+}
+
+.deal-cards-button > button {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  color: #FFF;
+  font-size: 2.75em;
+  cursor: pointer;
+}
+
 .hidden {
+  display: none;
+}
+
+.invisible {
   opacity: 0;
 }
