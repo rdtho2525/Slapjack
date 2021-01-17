@@ -1,9 +1,18 @@
 //DOM elements
+var playerOnePile = document.querySelector('#playerOne');
+var playerTwoPile = document.querySelector('#playerTwo');
+var centerPileNode = document.querySelector('#centerPile');
 
 //Global Variables
 var slapjack = new Game();
 
+
 //Event listeners
+  //when playerOne hits 'q', playCard
+  //when playerOne hits 'f', slapPile
+
+  //when playerTwo hits 'p', playCard
+  //when playerTwo hits 'j', slapPile
 
 //Functions
 function hide(element) {
@@ -39,15 +48,17 @@ function isSandwich() {
   }
 }
 
-function checkSlapper(player) {
-  var nonSlapper;
+function checkOpponent(player) {
+  var opponent;
   if (player.id === 'playerOne') {
-    nonSlapper = 'playerTwo';
+    opponent = 'playerTwo'
   } else {
-    nonSlapper = 'playerOne';
+    opponent = 'playerOne'
   }
-  return nonSlapper
+  return opponent
 }
+
+
 
 function takePile(player, game) {
   for (var i = 0; i < game.centerPile.length; i++) {
@@ -57,4 +68,22 @@ function takePile(player, game) {
 
 function clearPile(game) {
     game.centerPile = []
+}
+
+function findKey() {
+  var keyFinder = event.which;
+  var keyStroke = String.fromCharCode(keyFinder);
+  return keyStroke
+}
+
+function playCardPlayerOne() {
+  var p1 = slapjack.playerOne
+  findKey()
+  if (keyStroke() === 'q') {
+      p1.playCard(slapjack);
+      centerPileNode.innerHTML =
+      `<image src="${slapjack.centerPile[0].image}" alt="${slapjack.centerPile[0].type} ${slapjack.centerPile[0].value}">`
+  } else {
+    return
+  }
 }
