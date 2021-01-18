@@ -141,9 +141,10 @@ function enableGame() {
 function dealCardsToPlayers() {
   enableGame();
   slapjack.dealCards();
-  hide(buttonContainer, 'hidden')
-  unhide(centerPileNode, 'hidden')
-  hide(centerPileNode, 'invisible')
+  hide(buttonContainer, 'hidden');
+  unhide(centerPileNode, 'hidden');
+  hide(centerPileNode, 'invisible');
+  actionNotifier.innerText = 'Player 1, you\'re up!';
 }
 
 function playGame(event) {
