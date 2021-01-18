@@ -142,9 +142,10 @@ function enableGame() {
 function dealCardsToPlayers() {
   enableGame();
   slapjack.dealCards();
-  hide(buttonContainer, 'hidden')
-  unhide(centerPileNode, 'hidden')
-  hide(centerPileNode, 'invisible')
+  hide(buttonContainer, 'hidden');
+  unhide(centerPileNode, 'hidden');
+  hide(centerPileNode, 'invisible');
+  actionNotifier.innerText = 'Player 1, you\'re up!';
 }
 
 function playGame(event) {
@@ -203,6 +204,7 @@ function winGame(player) {
   if (isEnabled && slapjack.centerPile.length === 0 && !checkDeck(slapjack[player.opponent])) {
     player.wins++
     player.isWinner = true;
+    player.saveWinsToStorage()
     displayWins(player)
   }
 }
@@ -219,6 +221,5 @@ function displayWins(player) {
   } else {
     grammar = 'Wins'
   }
-
   document.querySelector(`#${player.id}Wins`).innerText = `${player.wins} ${grammar}`
 }
