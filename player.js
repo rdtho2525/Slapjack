@@ -1,6 +1,7 @@
 class Player {
-  constructor(id) {
+  constructor(id, name) {
     this.id = id;
+    this.name = name;
     this.wins = 0;
     this.hand = [];
     this.turn = true;
@@ -33,12 +34,6 @@ class Player {
     if (output === true) {
       clearPile(game)
       game.shuffleDeck(this.hand)
-    }
-
-    if (game.centerPile.length === 0 && !checkDeck(game[this.opponent])) {
-      game.pronounceWinner(this)
-      game.resetDeck()
-      // console.log(`${this.id} wins!`)
     }
   }
 
