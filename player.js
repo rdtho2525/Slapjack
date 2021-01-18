@@ -17,7 +17,6 @@ class Player {
       game[this.opponent].turn = true;
     } else {
       hide(game.centerPile, 'invisible')
-      action = 
     }
   }
 
