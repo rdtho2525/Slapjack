@@ -127,7 +127,6 @@ function clearPile(game) {
 }
 
 function disableGame() {
-  console.log('buttons disabled')
   document.onkeydown = function (event) {
     return false
   }
