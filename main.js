@@ -110,7 +110,7 @@ function dealCardsToPlayers() {
   hide(buttonContainer, 'hidden')
   unhide(centerPileNode, 'hidden')
   hide(centerPileNode, 'invisible')
-  displayAction();
+  // displayAction();
 }
 
 function playGame(event) {
@@ -127,7 +127,8 @@ function playGame(event) {
   } else if (keyPressed == 'f') {
     p1.slapPile(slapjack)
     unhide(actionNotifier, 'invisible')
-    console.log(keyPressed)
+    winGame(p1)
+    console.log(winGame(p1))
     console.log('Player One slapped the pile!')
     actionNotifier.innerText  = 'Player 1 slapped the pile!'
   } else if (keyPressed == 'p') {
@@ -139,7 +140,8 @@ function playGame(event) {
   } else if (keyPressed == 'j') {
     p2.slapPile(slapjack)
     unhide(actionNotifier, 'invisible')
-    console.log(keyPressed)
+    winGame(p2)
+    console.log(winGame(p2))
     console.log('Player Two slapped the pile!')
     actionNotifier.innerText  = 'Player 2 slapped the pile!'
   } else {
@@ -157,19 +159,36 @@ function displayTopCard() {
     var topCardValue = slapjack.centerPile[0].value;
     unhide(centerPileNode, 'invisible')
     centerPileNode.innerHTML =
-    `<img id="topCard" src=${topCardImage} alt="${topCardType} ${topCardValue}">`
+      `<img id="topCard" src=${topCardImage} alt="${topCardType} ${topCardValue}">`
     console.log(slapjack.centerPile)
   } else {
     hide(centerPileNode, 'invisible')
   }
 }
 
-// function displayAction() {
-//   return actionNotifier.innerText = ''
-// }
+function winGame(player) {
+  var gameWinner;
+  var isEnabled = document.onkeydown();
+  if (isEnabled && slapjack.centerPile.length === 0 && !checkDeck(slapjack[player.opponent])) {
+    slapjack.pronounceWinner(player)
+    slapjack.resetDeck(slapjack.playerOne, slapjack.playerTwo)
+  }
+
+}
 
 function displayWins(player) {
   var grammar;
+  var gameWinner;
+  if (player.id === 'playerOne') {
+    gameWinner = 'Player 1';
+  } else {
+    gameWinner = 'Player 2';
+  }
+
+  if (player.isWinner === true) {
+    actionNotifier.innerText = `${gameWinner} wins!`
+  }
+
   if (player.wins === 1) {
     grammar = 'Win'
   } else {

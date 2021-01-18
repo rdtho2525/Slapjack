@@ -87,9 +87,11 @@ class Game {
 
   pronounceWinner(player) {
     player.wins++
+    player.isWinner = true;
+    this[player.opponent].isWinner = false;
   }
 
-  resetDeck() {
+  resetDeck(p1, p2) {
     this.deck = [
     {type: 'blue', value: 1, image: './card-deck-assets/blue-01.png'},
     {type: 'blue', value: 2, image: './card-deck-assets/blue-02.png'},
@@ -145,5 +147,10 @@ class Game {
     {type: 'red', value: 'king', image: './card-deck-assets/red-king.png'},
     {type: 'none', value: 'wild', image: 'wild.png'}
     ];
+    clearPile(this);
+    p1.hand = [];
+    p2.hand = [];
+    p1.isWinner = false;
+    p2.isWinner = false;
   }
 }
