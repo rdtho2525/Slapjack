@@ -142,10 +142,9 @@ function enableGame() {
 function dealCardsToPlayers() {
   enableGame();
   slapjack.dealCards();
-  hide(buttonContainer, 'hidden');
-  unhide(centerPileNode, 'hidden');
-  hide(centerPileNode, 'invisible');
-  actionNotifier.innerText = 'Player 1, you\'re up!';
+  hide(buttonContainer, 'hidden')
+  unhide(centerPileNode, 'hidden')
+  hide(centerPileNode, 'invisible')
 }
 
 function playGame(event) {
@@ -159,21 +158,27 @@ function playGame(event) {
   if (keyPressed == 'q') {
     p1.playCard(slapjack)
     hide(actionNotifier, 'invisible')
+    console.log('Player One dealt a card!')
   } else if (keyPressed == 'f') {
     p1.slapPile(slapjack)
     unhide(actionNotifier, 'invisible')
     actionNotifier.innerText = `${action.toUpperCase()}! ${p1.name} ${result}!`
+    console.log('Player One slapped the pile!')
     winGame(p1)
   } else if (keyPressed == 'p') {
     p2.playCard(slapjack)
     hide(actionNotifier, 'invisible')
+    console.log('Player Two dealt a card!')
   } else if (keyPressed == 'j') {
     p2.slapPile(slapjack)
     unhide(actionNotifier, 'invisible')
     actionNotifier.innerText = `${action.toUpperCase()}! ${p2.name} ${result2}!`
+    console.log('Player Two slapped the pile!')
     winGame(p2)
   } else {
-    return
+    console.log(keyPressed)
+    console.log('Keep trying!')
+    actionNotifier.innerText  = 'Whoops!'
   }
 
   displayTopCard()
@@ -196,34 +201,24 @@ function displayTopCard() {
 function winGame(player) {
   var isEnabled = document.onkeydown();
   if (isEnabled && slapjack.centerPile.length === 0 && !checkDeck(slapjack[player.opponent])) {
+    player.wins++
     player.isWinner = true;
-    player.saveWinsToStorage();
-    displayWins(player);
+    displayWins(player)
   }
-}
-
-function getWins(player) {
-  var localWins = localStorage.getItem(`${player.id}Wins`);
-  var parsedWins = JSON.parse(localWins);
-  return parsedWins
-}
-
-function reloadPage() {
-  location.reload();
 }
 
 function displayWins(player) {
   var grammar;
-  var winsToDisplay = player.wins
   if (player.isWinner === true) {
-    actionNotifier.innerText = `${player.name} wins!`;
-    slapjack.resetDeck(slapjack.playerOne, slapjack.playerTwo);
+    actionNotifier.innerText = `${player.name} wins!`
+    slapjack.resetDeck(slapjack.playerOne, slapjack.playerTwo)
   }
 
-  if (winsToDisplay === 1) {
+  if (player.wins === 1) {
     grammar = 'Win'
   } else {
     grammar = 'Wins'
   }
-  document.querySelector(`#${player.id}Wins`).innerText = `${winsToDisplay} ${grammar}`;
+
+  document.querySelector(`#${player.id}Wins`).innerText = `${player.wins} ${grammar}`
 }

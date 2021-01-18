@@ -2,7 +2,7 @@ class Player {
   constructor(id, name) {
     this.id = id;
     this.name = name;
-    this.wins = getWins(this) || 0;
+    this.wins = 0;
     this.hand = [];
     this.turn = true;
     this.opponent = checkOpponent(this);
@@ -16,7 +16,7 @@ class Player {
       game.centerPile.unshift(cardPlayed);
       game[this.opponent].turn = true;
     } else {
-      hide(game.centerPile, 'invisible')
+      console.log('Invalid action! Player either has no cards or tried to play twice in a row.')
     }
   }
 
@@ -38,9 +38,8 @@ class Player {
   }
 
   saveWinsToStorage() {
-    this.wins++
-    var winsToStore = this.wins;
-    var strWins = JSON.stringify(winsToStore);
+    var winstoStore = this.wins;
+    var strWins = JSON.stringify(winstoStore);
     localStorage.setItem(`${this.id}Wins`, strWins);
   }
 }
