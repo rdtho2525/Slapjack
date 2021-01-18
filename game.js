@@ -1,7 +1,7 @@
 class Game {
   constructor() {
-    this.playerOne = new Player('playerOne');
-    this.playerTwo = new Player('playerTwo');
+    this.playerOne = new Player('playerOne', 'Player 1');
+    this.playerTwo = new Player('playerTwo', 'Player 2');
     this.deck = [
     {type: 'blue', value: 1, image: './card-deck-assets/blue-01.png'},
     {type: 'blue', value: 2, image: './card-deck-assets/blue-02.png'},
@@ -83,12 +83,6 @@ class Game {
         newDeck.splice(newDeck.indexOf(newDeck[i]), 1)
       }
     }
-  }
-
-  pronounceWinner(player) {
-    player.wins++
-    player.isWinner = true;
-    this[player.opponent].isWinner = false;
   }
 
   resetDeck(p1, p2) {
