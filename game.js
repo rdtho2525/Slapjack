@@ -93,7 +93,7 @@ class Game {
   }
 
   processSlap(player) {
-    if (player.slapPile(this) === true) {
+    if (player.validateSlap(this) === true) {
       takePile(player, this)
       this.shuffleDeck(player.hand)
     } else if (!checkHand(player) || !checkHand(this[player.opponent])) {
