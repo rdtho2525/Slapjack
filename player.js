@@ -20,9 +20,11 @@ class Player {
     }
   }
 
-  slapPile(game) {
+  validateSlap(game) {
     var validSlap;
-    if (isJack() || isDouble() || isSandwich() || isWild()) {
+    if (isJack()) {
+      validSlap = true;
+    } else if (checkHand(this) && (isDouble() || isSandwich() || isWild())) {
       validSlap = true;
     } else {
       validSlap = false;
