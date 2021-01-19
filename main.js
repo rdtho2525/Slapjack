@@ -181,6 +181,7 @@ function displayTopCard() {
 
 function winGame(player) {
   if (slapjack.centerPile.length === 0 && !checkHand(slapjack[player.opponent])) {
+  // if (slapjack.centerPile.length === 0 && !checkHand(slapjack[player.opponent])) {
     player.isWinner = true;
     player.saveWinsToStorage();
     displayWins(player);
@@ -197,7 +198,7 @@ function displayWins(player) {
   var grammar;
   var winsToDisplay = player.wins
   if (player.isWinner === true) {
-    setTimeout(function() { slapjack.resetGame(slapjack.playerOne, slapjack.playerTwo) }, 4000)
+    setTimeout(function() { slapjack.resetGame() }, 4000)
   }
 
   if (winsToDisplay === 1) {

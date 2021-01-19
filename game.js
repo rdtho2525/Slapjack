@@ -103,7 +103,7 @@ class Game {
     }
   }
 
-  resetGame(p1, p2) {
+  resetGame() {
     location.reload()
   }
 }
