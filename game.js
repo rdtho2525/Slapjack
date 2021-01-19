@@ -85,13 +85,9 @@ class Game {
     }
   }
 
-  //method to generate methods
   compileMessage(player) {
     var action = checkAction()
-    console.log(action)
     var result = checkResult(action, this[player.id])
-    console.log(this[player.id].name)
-    console.log(result)
     var message = `${action.toUpperCase()}! ${player.name} ${result}!`
     return message
   }
@@ -100,7 +96,7 @@ class Game {
     if (player.slapPile(this) === true) {
       takePile(player, this)
       this.shuffleDeck(player.hand)
-    } else if (!checkHand(player)) {
+    } else if (!checkHand(player) || !checkHand(this[player.opponent])) {
       return false
     } else {
       forfeitCard(player, this[player.opponent])
@@ -109,7 +105,5 @@ class Game {
 
   resetGame(p1, p2) {
     location.reload()
-    p1.isWinner = false;
-    p2.isWinner = false;
   }
 }
