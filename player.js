@@ -37,7 +37,7 @@ class Player {
     this.validateSlap(game)
     game.processSlap(this)
     clearPile(game)
-    winGame(this)
+    winGame(this, this.opponent)
   }
 
   addWin() {

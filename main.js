@@ -97,18 +97,18 @@ function checkAction() {
   return action
 }
 
-function checkResult(string, player) {
+function checkResult(string, player, opponent) {
   var result;
-  if (string !== 'uh oh' && string !== 'bad slap' && checkHand(slapjack[player.opponent])) {
+  if (string !== 'uh oh' && string !== 'bad slap' && checkHand(opponent)) {
     result = 'takes the pile'
   } else if (string === 'bad slap') {
-    result = `forfeits a card to ${slapjack[player.opponent].name}`
-  } else if (!isJack() && !checkHand(slapjack[player.opponent])) {
+    result = `forfeits a card to ${opponent.name}`
+  } else if (!isJack() && !checkHand(opponent)) {
     result = 'can only win on SlapJack - keep playing'
-  } else if (!checkHand(player)){
-    result = `doesn't have a card to give. ${slapjack[player.opponent].name} wins`
+  } else if (!checkHand(player)) {
+    result = `doesn't have a card to give. ${opponent.name} wins`
     clearPile(slapjack);
-    winGame(slapjack[player.opponent])
+    winGame(opponent, player)
   } else {
     result = 'wins'
   }
@@ -179,8 +179,8 @@ function displayTopCard() {
   }
 }
 
-function winGame(player) {
-  if (slapjack.centerPile.length === 0 && !checkHand(slapjack[player.opponent])) {
+function winGame(player, opponent) {
+  if (slapjack.centerPile.length === 0 && !checkHand(opponent)) {
   // if (slapjack.centerPile.length === 0 && !checkHand(slapjack[player.opponent])) {
     player.isWinner = true;
     player.saveWinsToStorage();

@@ -87,7 +87,7 @@ class Game {
 
   compileMessage(player) {
     var action = checkAction()
-    var result = checkResult(action, this[player.id])
+    var result = checkResult(action, this[player.id], this[player.opponent])
     var message = `${action.toUpperCase()}! ${player.name} ${result}!`
     return message
   }
