@@ -148,14 +148,14 @@ function playGame(event) {
   if (keyPressed == 'q') {
     p1.playCard(slapjack);
   } else if (keyPressed == 'f') {
-    actionNotifier.innerText = slapjack.compileMessage(p1)
+    actionNotifier.innerText = slapjack.compileMessage(p1);
     p1.slapPile(slapjack);
     unhide(actionNotifier, 'invisible');
     setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000)
   } else if (keyPressed == 'p') {
     p2.playCard(slapjack);
   } else if (keyPressed == 'j') {
-    actionNotifier.innerText = slapjack.compileMessage(p2)
+    actionNotifier.innerText = slapjack.compileMessage(p2);
     p2.slapPile(slapjack);
     unhide(actionNotifier, 'invisible');
     setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000);

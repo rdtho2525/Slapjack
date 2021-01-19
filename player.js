@@ -34,10 +34,10 @@ class Player {
   }
 
   slapPile(game) {
-    this.validateSlap(game)
-    game.processSlap(this)
-    clearPile(game)
-    winGame(this, game[this.opponent])
+    this.validateSlap(game);
+    game.processSlap(this);
+    clearPile(game);
+    winGame(this, game[this.opponent]);
   }
 
   addWin() {
@@ -45,7 +45,7 @@ class Player {
   }
 
   saveWinsToStorage() {
-    this.addWin()
+    this.addWin();
     var winsToStore = this.wins;
     var strWins = JSON.stringify(winsToStore);
     localStorage.setItem(`${this.id}Wins`, strWins);
