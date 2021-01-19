@@ -4,7 +4,7 @@ class Player {
     this.name = name;
     this.wins = getWins(this) || 0;
     this.hand = [];
-    this.turn = true;
+    this.turn = false;
     this.opponent = checkOpponent(this);
     this.isWinner = false;
   }
@@ -37,7 +37,7 @@ class Player {
     this.validateSlap(game)
     game.processSlap(this)
     clearPile(game)
-    winGame(this, this.opponent)
+    winGame(this, game[this.opponent])
   }
 
   addWin() {

@@ -83,6 +83,7 @@ class Game {
         newDeck.splice(newDeck.indexOf(newDeck[i]), 1)
       }
     }
+    this.playerOne.turn = true
   }
 
   compileMessage(player) {

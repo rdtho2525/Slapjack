@@ -145,7 +145,6 @@ function playGame(event) {
 
   if (keyPressed == 'q') {
     p1.playCard(slapjack)
-    console.log(slapjack.centerPile[0])
   } else if (keyPressed == 'f') {
     actionNotifier.innerText = slapjack.compileMessage(p1)
     p1.slapPile(slapjack);
@@ -153,7 +152,6 @@ function playGame(event) {
     setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000)
   } else if (keyPressed == 'p') {
     p2.playCard(slapjack)
-    console.log(slapjack.centerPile[0])
   } else if (keyPressed == 'j') {
     actionNotifier.innerText = slapjack.compileMessage(p2)
     p2.slapPile(slapjack)
@@ -181,7 +179,6 @@ function displayTopCard() {
 
 function winGame(player, opponent) {
   if (slapjack.centerPile.length === 0 && !checkHand(opponent)) {
-  // if (slapjack.centerPile.length === 0 && !checkHand(slapjack[player.opponent])) {
     player.isWinner = true;
     player.saveWinsToStorage();
     displayWins(player);
@@ -197,7 +194,7 @@ function getWins(player) {
 function displayWins(player) {
   var grammar;
   var winsToDisplay = player.wins
-  if (player.isWinner === true) {
+  if (player.isWinner) {
     setTimeout(function() { slapjack.resetGame() }, 4000)
   }
 
