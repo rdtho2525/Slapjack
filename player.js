@@ -17,7 +17,6 @@ class Player {
       game[this.opponent].turn = true;
     } else {
       return
-      // hide(game.centerPile, 'invisible');
     }
   }
 
@@ -33,13 +32,13 @@ class Player {
   }
 
   addWin() {
-    this.win++
+    this.wins++
   }
 
   saveWinsToStorage() {
-    addWin();
-    var winstoStore = this.wins;
-    var strWins = JSON.stringify(winstoStore);
+    this.addWin()
+    var winsToStore = this.wins;
+    var strWins = JSON.stringify(winsToStore);
     localStorage.setItem(`${this.id}Wins`, strWins);
   }
 }
