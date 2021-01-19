@@ -10,35 +10,34 @@ class Player {
   }
 
   playCard(game) {
-    if(this.hand.length > 0 && (this.turn || !game[this.opponent].hand.length) && checkDeck(this)) {
+    if((this.turn || !checkHand(game[this.opponent])) && checkHand(this)) {
       this.turn = false;
       var cardPlayed = this.hand.splice(0, 1)[0];
       game.centerPile.unshift(cardPlayed);
       game[this.opponent].turn = true;
     } else {
-      hid(game.centerPile, 'invisible');
+      return
+      // hide(game.centerPile, 'invisible');
     }
   }
 
   slapPile(game) {
-    var output;
+    var validSlap;
     if (isJack() || isDouble() || isSandwich() || isWild()) {
-      takePile(this, game)
-      output = true;
+      validSlap = true;
     } else {
-        var topCard = this.hand.shift();
-        game[this.opponent].hand.push(topCard);
-        output = false;
+      validSlap = false;
     }
 
-    if (output === true) {
-      clearPile(game)
-      game.shuffleDeck(this.hand)
-    }
+    return validSlap
+  }
+
+  addWin() {
+    this.win++
   }
 
   saveWinsToStorage() {
-    this.wins++
+    addWin();
     var winstoStore = this.wins;
     var strWins = JSON.stringify(winstoStore);
     localStorage.setItem(`${this.id}Wins`, strWins);
