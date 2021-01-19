@@ -1,21 +1,17 @@
-//DOM elements
 var centerPileNode = document.querySelector('#centerPile');
 var actionNotifier = document.querySelector('#actionNotifier');
 var dealCardsButton = document.querySelector('#dealCardsButton');
 var buttonContainer = document.querySelector('#buttonContainer');
 
-//Global Variables
 var slapjack = new Game();
 var p1 = slapjack.playerOne;
 var p2 = slapjack.playerTwo;
 
-//Event listeners
 window.addEventListener('load', displayWins(p1));
 window.addEventListener('load', displayWins(p2));
 document.addEventListener('keypress', playGame);
 dealCardsButton.addEventListener('click', dealCardsToPlayers);
 
-//Functions
 function hide(element, rule) {
   return element.classList.add(rule);
 }
@@ -151,25 +147,18 @@ function playGame(event) {
     p1.playCard(slapjack)
     console.log(slapjack.centerPile[0])
   } else if (keyPressed == 'f') {
-    p1.validateSlap(slapjack)
-    slapjack.processSlap(p1)
-    //174-178 can be its own function
-    unhide(actionNotifier, 'invisible')
     actionNotifier.innerText = slapjack.compileMessage(p1)
-    clearPile(slapjack)
-    winGame(p1)
+    p1.slapPile(slapjack);
+    unhide(actionNotifier, 'invisible')
     setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000)
   } else if (keyPressed == 'p') {
     p2.playCard(slapjack)
     console.log(slapjack.centerPile[0])
   } else if (keyPressed == 'j') {
-    p2.validateSlap(slapjack)
-    slapjack.processSlap(p2)
-    unhide(actionNotifier, 'invisible')
     actionNotifier.innerText = slapjack.compileMessage(p2)
+    p2.slapPile(slapjack)
+    unhide(actionNotifier, 'invisible')
     setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000)
-    clearPile(slapjack)
-    winGame(p2)
   } else {
     return
   }
@@ -208,7 +197,6 @@ function displayWins(player) {
   var grammar;
   var winsToDisplay = player.wins
   if (player.isWinner === true) {
-    // actionNotifier.innerText = `${player.name} wins!`;
     setTimeout(function() { slapjack.resetGame(slapjack.playerOne, slapjack.playerTwo) }, 4000)
   }
 

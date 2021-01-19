@@ -33,6 +33,13 @@ class Player {
     return validSlap
   }
 
+  slapPile(game) {
+    this.validateSlap(game)
+    game.processSlap(this)
+    clearPile(game)
+    winGame(this)
+  }
+
   addWin() {
     this.wins++
   }
