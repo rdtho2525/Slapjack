@@ -29,7 +29,9 @@ function isJack() {
 }
 
 function isDouble() {
-  if (slapjack.centerPile.length > 1 && slapjack.centerPile[0].value === slapjack.centerPile[1].value) {
+  var topCard = slapjack.centerPile[0].value;
+  var secondCard = slapjack.centerPile[1].value;
+  if (slapjack.centerPile.length > 1 && topCard === secondCard) {
     return true
   } else {
     return false
@@ -37,7 +39,9 @@ function isDouble() {
 }
 
 function isSandwich() {
-  if (slapjack.centerPile.length > 2 && slapjack.centerPile[0].value === slapjack.centerPile[2].value) {
+  var topCard = slapjack.centerPile[0].value;
+  var thirdCard = slapjack.centerPile[2].value;
+  if (slapjack.centerPile.length > 2 && topCard === thirdCard) {
     return true
   } else {
     return false
@@ -45,7 +49,7 @@ function isSandwich() {
 }
 
 function isWild() {
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 3; i++) {
     if (slapjack.centerPile[i].value === 'wild') {
       return true
     } else {
@@ -108,7 +112,7 @@ function checkResult(string, player, opponent) {
   } else if (!checkHand(player)) {
     result = `doesn't have a card to give. ${opponent.name} wins`
     clearPile(slapjack);
-    winGame(opponent, player)
+    winGame(opponent, player);
   } else {
     result = 'wins'
   }
@@ -129,7 +133,6 @@ function takePile(player, game) {
 function forfeitCard(player, opponent) {
   var topCard = player.hand.shift();
   opponent.hand.push(topCard);
-  validSlap = false;
 }
 
 function dealCardsToPlayers() {
@@ -142,26 +145,25 @@ function dealCardsToPlayers() {
 
 function playGame(event) {
   var keyPressed = String.fromCharCode(event.keyCode);
-
   if (keyPressed == 'q') {
-    p1.playCard(slapjack)
+    p1.playCard(slapjack);
   } else if (keyPressed == 'f') {
     actionNotifier.innerText = slapjack.compileMessage(p1)
     p1.slapPile(slapjack);
-    unhide(actionNotifier, 'invisible')
+    unhide(actionNotifier, 'invisible');
     setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000)
   } else if (keyPressed == 'p') {
-    p2.playCard(slapjack)
+    p2.playCard(slapjack);
   } else if (keyPressed == 'j') {
     actionNotifier.innerText = slapjack.compileMessage(p2)
-    p2.slapPile(slapjack)
-    unhide(actionNotifier, 'invisible')
-    setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000)
+    p2.slapPile(slapjack);
+    unhide(actionNotifier, 'invisible');
+    setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000);
   } else {
     return
   }
 
-  displayTopCard()
+  displayTopCard();
 }
 
 function displayTopCard() {
@@ -169,11 +171,11 @@ function displayTopCard() {
     var topCardImage = slapjack.centerPile[0].image;
     var topCardType = slapjack.centerPile[0].type;
     var topCardValue = slapjack.centerPile[0].value;
-    unhide(centerPileNode, 'invisible')
+    unhide(centerPileNode, 'invisible');
     centerPileNode.innerHTML =
       `<img id="topCard" src=${topCardImage} alt="${topCardType} ${topCardValue}">`
   } else {
-    hide(centerPileNode, 'invisible')
+    hide(centerPileNode, 'invisible');
   }
 }
 
@@ -193,9 +195,9 @@ function getWins(player) {
 
 function displayWins(player) {
   var grammar;
-  var winsToDisplay = player.wins
+  var winsToDisplay = player.wins;
   if (player.isWinner) {
-    setTimeout(function() { slapjack.resetGame() }, 4000)
+    setTimeout(function() { slapjack.resetGame() }, 4000);
   }
 
   if (winsToDisplay === 1) {

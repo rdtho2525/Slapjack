@@ -76,31 +76,31 @@ class Game {
     var newDeck = this.shuffleDeck(this.deck);
     for (var i = newDeck.length-1; i >= 0; i--) {
       if (i % 2 === 0) {
-        this.playerOne.hand.push(newDeck[i])
-        newDeck.splice(newDeck.indexOf(newDeck[i]), 1)
+        this.playerOne.hand.push(newDeck[i]);
+        newDeck.splice(newDeck.indexOf(newDeck[i]), 1);
       } else {
-        this.playerTwo.hand.push(newDeck[i])
-        newDeck.splice(newDeck.indexOf(newDeck[i]), 1)
+        this.playerTwo.hand.push(newDeck[i]);
+        newDeck.splice(newDeck.indexOf(newDeck[i]), 1);
       }
     }
     this.playerOne.turn = true
   }
 
   compileMessage(player) {
-    var action = checkAction()
-    var result = checkResult(action, this[player.id], this[player.opponent])
-    var message = `${action.toUpperCase()}! ${player.name} ${result}!`
+    var action = checkAction();
+    var result = checkResult(action, this[player.id], this[player.opponent]);
+    var message = `${action.toUpperCase()}! ${player.name} ${result}!`;
     return message
   }
 
   processSlap(player) {
     if (player.validateSlap(this) === true) {
-      takePile(player, this)
-      this.shuffleDeck(player.hand)
+      takePile(player, this);
+      this.shuffleDeck(player.hand);
     } else if (!checkHand(player) || !checkHand(this[player.opponent])) {
       return false
     } else {
-      forfeitCard(player, this[player.opponent])
+      forfeitCard(player, this[player.opponent]);
     }
   }
 
