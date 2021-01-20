@@ -62,7 +62,7 @@ _*Deployed set is not available at this time_
 + JavaScript
 
 ## Code Architecture
-![flowchart](assets/README-867a9165.drawio)
+![flowchart](assets/README-db80617c.png)
 
 ## Challenges and Triumphs
 + With this being the most logically complex project to date, it wasn't long before the codebase became entangled in a way that yielded undesired outcomes (i.e. winning the game on a sandwich or the notification didn't match the action, etc.).  To fix this, I separated some of my methods more to carry out even more specific actions so as to not contaminate other data references. Encountering this challenge taught me that SRP is not only important for the sake of developer empathy and reading code, but also for overall functionality of the application.
