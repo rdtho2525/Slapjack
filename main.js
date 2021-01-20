@@ -12,12 +12,17 @@ window.addEventListener('load', displayWins(p2));
 document.addEventListener('keypress', playGame);
 dealCardsButton.addEventListener('click', dealCardsToPlayers);
 
+
 function hide(element, rule) {
   return element.classList.add(rule);
 }
 
 function unhide(element, rule) {
   return element.classList.remove(rule);
+}
+
+function hideNotification() {
+  return setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000)
 }
 
 function isJack() {
@@ -72,7 +77,7 @@ function checkOpponent(player) {
 
 function checkHand(player) {
   var hasCards;
-  if(player.hand.length > 0) {
+  if(player.hand.length) {
     hasCards = true
   } else {
     hasCards = false
@@ -92,7 +97,7 @@ function proveEmptyHand(player) {
 
 function checkAction() {
   var action;
-  if (slapjack.centerPile.length <= 0) {
+  if (!slapjack.centerPile.length) {
     return
   } else if (isJack()) {
     action = 'slapjack'
@@ -151,25 +156,27 @@ function dealCardsToPlayers() {
   unhide(centerPileNode, 'hidden');
   hide(centerPileNode, 'invisible');
   actionNotifier.innerText = 'Player 1, you\'re up!';
+  hideNotification();
 }
 
 function playGame(event) {
   var keyPressed = String.fromCharCode(event.keyCode);
-
   if (keyPressed == 'q') {
     p1.playCard(slapjack);
+    centerPileNode.classList.remove('two')
   } else if (keyPressed == 'f') {
     actionNotifier.innerText = slapjack.compileMessage(p1);
     p1.slapPile(slapjack);
     unhide(actionNotifier, 'invisible');
-    setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000)
+    hideNotification();
   } else if (keyPressed == 'p') {
     p2.playCard(slapjack);
+    centerPileNode.classList.add('two');
   } else if (keyPressed == 'j') {
     actionNotifier.innerText = slapjack.compileMessage(p2);
     p2.slapPile(slapjack);
     unhide(actionNotifier, 'invisible');
-    setTimeout(function() { hide(actionNotifier, 'invisible') }, 5000);
+    hideNotification();
   } else {
     return
   }
@@ -180,7 +187,7 @@ function playGame(event) {
 }
 
 function displayTopCard() {
-  if (slapjack.centerPile.length > 0) {
+  if (slapjack.centerPile.length) {
     var topCardImage = slapjack.centerPile[0].image;
     var topCardType = slapjack.centerPile[0].type;
     var topCardValue = slapjack.centerPile[0].value;
@@ -193,7 +200,7 @@ function displayTopCard() {
 }
 
 function winGame(player, opponent) {
-  if (slapjack.centerPile.length === 0 && !checkHand(opponent)) {
+  if (!slapjack.centerPile.length && !checkHand(opponent)) {
     player.isWinner = true;
     player.saveWinsToStorage();
     displayWins(player);
