@@ -28,27 +28,44 @@ __Controls:__
 1. On the opening page, you'll find two hands for each player. Player 1 is on the user's left highlighted in blue and Player 2 is on the right highlighted in brown.  
 
   To get started, _click the center button to deal the cards to each player evenly_.
-  ![](assets/README-94a96b03.png)
+  ![initate-game](assets/README-94a96b03.png)
 
 2. Player 1 goes first.  Alternating turns, players will deal their top card to the center pile using their keyboard controls.  
-  ![](assets/README-5f3787e3.png)
+  ![cards-are-dealt](assets/README-5f3787e3.png)
 
 3. As the two players cycle through their decks, the center card will be highlighted the same color as the player who played it.
-  ![](assets/README-85c4772f.png)
+  ![mid-gameplay](assets/README-85c4772f.png)
 
 4. When one of the four scenarios appears, think fast: it's time to _slap_!
-  ![](assets/README-11dad568.png)
+  ![double-event](assets/README-3c883630.png)
 
 5. Oh no! It looks like Player 2 is out of cards.
-  ![](assets/README-c42d5456.png)
+  ![empty-hand](assets/README-c42d5456.png)
 
 6. Remember: only a _SlapJack_ can win the game for Player 1 or keep Player 2 alive.
-![](assets/README-7eb87297.png)
+  ![invalid-slap](assets/README-7eb87297.png)
 
 7. Player 1 was just a little two fast this time!  Don't fret, Player 2 - the game resets automatically so you can play again!
-  ![](assets/README-d1e86d9c.png)
+  ![end-game](assets/README-d1e86d9c.png)
 
 _*Deployed set is not available at this time_
+
+## Goals
++ Demonstrate growth with structuring and styling websites using HTML and CSS.
++ Develop and practice adhering to DRY and SRP code standards.
++ Strengthen critical thinking skills.
++ Practice utilizing localStorage to retain and retreive data.
+
+## Technologies
++ HTML
++ CSS
++ JavaScript
+
+## Code Architecture
+![flowchart](assets/README-867a9165.drawio)
+
+## Challenges and Triumphs
++ With this being the most logically complex project to date, it wasn't long before the codebase became entangled in a way that yielded undesired outcomes (i.e. winning the game on a sandwich or the notification didn't match the action, etc.).  To fix this, I separated some of my methods more to carry out even more specific actions so as to not contaminate other data references. Encountering this challenge taught me that SRP is not only important for the sake of developer empathy and reading code, but also for overall functionality of the application.
 
 ## Local install instructions
 + Clone this repo
