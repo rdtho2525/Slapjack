@@ -24,7 +24,7 @@ class Player {
     var validSlap;
     if (isJack()) {
       validSlap = true;
-    } else if (checkHand(this) && (isDouble() || isSandwich() || isWild())) {
+    } else if (checkHand(this) && checkHand(game[this.opponent]) && (isDouble() || isSandwich() || isWild())) {
       validSlap = true;
     } else {
       validSlap = false;
@@ -36,8 +36,10 @@ class Player {
   slapPile(game) {
     this.validateSlap(game);
     game.processSlap(this);
-    clearPile(game);
-    winGame(this, game[this.opponent]);
+    if (this.validateSlap(game)) {
+      clearPile(game);
+      winGame(this, game[this.opponent]);
+    }
   }
 
   addWin() {
