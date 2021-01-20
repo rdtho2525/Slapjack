@@ -26,8 +26,8 @@ body {
 header {
   width: 100%;
   position: absolute;
-  font-size: 4em;
   margin-top: 2rem;
+  font-size: 4em;
   text-align: center;
 }
 
@@ -51,10 +51,10 @@ section {
 
 /* HANDS */
 .hand {
+  background-size: 100%;
   display: block;
   height: 100%;
   width: 100%;
-  background-size: 100%;
 }
 
 .hand > img {
@@ -62,7 +62,6 @@ section {
   width: 100%;
   border: none;
   border-radius: 10px;
-  box-shadow:
 }
 
 
@@ -83,8 +82,8 @@ section {
 .win-counter {
   width: 100%;
   margin-top: 1em;
-  text-align: center;
   font-size: 2em;
+  text-align: center;
 }
 
 /* CENTER PILE */
