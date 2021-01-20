@@ -1,3 +1,4 @@
+/* GENERAL STYLES */
 @import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC);
 *{
   box-sizing: border-box;
@@ -30,6 +31,7 @@ header {
   text-align: center;
 }
 
+/* LAYOUT */
 main {
   height: 100%;
   width: 100%;
@@ -39,7 +41,7 @@ main {
 }
 
 section {
-  height: 450px;
+  height: 402px;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -47,6 +49,7 @@ section {
   margin: 0 auto;
 }
 
+/* HANDS */
 .hand {
   display: block;
   height: 100%;
@@ -57,31 +60,44 @@ section {
 .hand > img {
   height: 402px;
   width: 100%;
-  border: 3px solid #FFF;
+  border: none;
   border-radius: 10px;
+  box-shadow:
 }
 
-aside {
+
+.player {
+  border-radius: 10px;
+  -moz-box-shadow:    3px 3px 5px 6px #89cff0;
+  -webkit-box-shadow: 3px 3px 5px 6px #89cff0;
+  box-shadow:         3px 3px 5px 6px #89cff0;
+}
+
+.player.two {
+  border-radius: 10px;
+  -moz-box-shadow:    3px 3px 5px 6px #a67a5b;
+  -webkit-box-shadow: 3px 3px 5px 6px #a67a5b;
+  box-shadow:         3px 3px 5px 6px #a67a5b;
+}
+
+.win-counter {
   width: 100%;
   margin-top: 1em;
   text-align: center;
   font-size: 2em;
 }
 
-.pile {
-  border-radius: 10px;
-  box-shadow: -12px -5px 2px 1px rgba(255,255,255, 0.3);
-}
-
+/* CENTER PILE */
 .pile > img {
-  max-height: 100%;
-  max-width: 100%;
-  width: 300px;
+  height: 402px;
+  width: 100%;
   margin: 0;
   border: 1px solid #FFF;
   border-radius: 10px;
 }
 
+
+/* CARD DEALER */
 .deal-cards-button {
   height: 300px;
   display: flex;
@@ -101,6 +117,7 @@ aside {
   cursor: pointer;
 }
 
+/* UTILITY */
 .hidden {
   display: none;
 }
