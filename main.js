@@ -21,7 +21,8 @@ function unhide(element, rule) {
 }
 
 function isJack() {
-  if (slapjack.centerPile[0].value === 'jack') {
+  var topCard = slapjack.centerPile[0].value;
+  if (topCard === 'jack') {
     return true
   } else {
     return false
@@ -78,6 +79,15 @@ function checkHand(player) {
   }
 
   return hasCards
+}
+
+function proveEmptyHand(player) {
+  var emptyHand = document.querySelector(`#${player.id}`);
+  if (!checkHand(player)) {
+    hide(emptyHand, 'invisible');
+  } else {
+    unhide(emptyHand, 'invisible');
+  }
 }
 
 function checkAction() {
@@ -145,6 +155,7 @@ function dealCardsToPlayers() {
 
 function playGame(event) {
   var keyPressed = String.fromCharCode(event.keyCode);
+
   if (keyPressed == 'q') {
     p1.playCard(slapjack);
   } else if (keyPressed == 'f') {
@@ -164,6 +175,8 @@ function playGame(event) {
   }
 
   displayTopCard();
+  proveEmptyHand(p1);
+  proveEmptyHand(p2);
 }
 
 function displayTopCard() {
