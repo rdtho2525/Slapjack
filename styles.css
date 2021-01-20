@@ -9,7 +9,7 @@
 }
 
 html {
-  background-image: url('/Users/reggiethompson/turing/1module/Slapjack/assets/slapjack_bgIMG_lastShot2.png');
+  background-image: url('./assets/slapjack_bgIMG_lastShot2.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: scroll;
