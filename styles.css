@@ -60,7 +60,6 @@ section {
 .hand > img {
   height: 402px;
   width: 100%;
-  /* border: 3px solid #000; */
   border: none;
   border-radius: 10px;
   box-shadow:
@@ -119,7 +118,6 @@ section {
 }
 
 /* UTILITY */
-
 .hidden {
   display: none;
 }
