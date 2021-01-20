@@ -7,7 +7,7 @@ _SlapJack!_ is a fun card game for kids and adults of all ages! All you'll need 
 ### _Let's go!_
 
 ## Rules:
-Each player alternates dealing a single card to a center pile.  That pile can be collected by _slapping_ said pile in one of the three acceptable scenarios:
+Each player alternates dealing a single card to a center pile.  That pile can be collected by _slapping_ said pile in one of the four acceptable scenarios:
   + _SlapJack_ - A jack appears on the top of the center pile.
   + _Double_ - Two cards of the same value appear back-to-back.
   + _Sandwich_ - Two cards of the same value are split by a single card of a different value.
