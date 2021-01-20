@@ -69,7 +69,7 @@ _*Deployed set is not available at this time_
 
 ## Local install instructions
 + Clone this repo
-+ CD into the intention-timer directory
++ CD into the Slapjack directory
 + Open index.html in your browser
 
 ## Contributors
