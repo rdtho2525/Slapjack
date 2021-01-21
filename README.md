@@ -45,7 +45,7 @@ __Controls:__
 6. Remember: only a _SlapJack_ can win the game for Player 1 or keep Player 2 alive.
   ![invalid-slap](assets/README-7eb87297.png)
 
-7. Player 1 was just a little two fast this time!  Don't fret, Player 2 - the game resets automatically so you can play again!
+7. Player 1 was just a little too fast this time!  Don't fret, Player 2 - the game resets automatically so you can play again!
   ![end-game](assets/README-d1e86d9c.png)
 
 _*Deployed set is not available at this time_
