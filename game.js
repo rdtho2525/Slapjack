@@ -138,7 +138,7 @@ class Game {
     } else if (!player.hasCards || !this[player.opponent].hasCards) {
       return false
     } else {
-      player.forfeitCard(this);
+      player.forfeitCard(this[player.opponent]);
     }
   }
 

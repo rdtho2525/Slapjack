@@ -37,10 +37,9 @@ class Player {
     }
   }
 
-  forfeitCard(game) {
+  forfeitCard(opponent) {
     let topCard = this.hand.shift();
-    console.log(topCard)
-    game[this.opponent].hand.push(topCard);
+    opponent.hand.push(topCard);
   }
 
   addWin() {
