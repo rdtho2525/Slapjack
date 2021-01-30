@@ -4,13 +4,14 @@ class Player {
     this.name = name;
     this.wins = this.getWins() || 0;
     this.hand = [];
-    this.hasCards = !!this.hand;
+    this.hasCards = true;
     this.turn = false;
     this.opponent = this.id === 'playerOne' ? 'playerTwo' : 'playerOne';
     this.isWinner = false;
   }
 
   playCard(game) {
+    this.hand.length > 0 ? this.hasCards = true : this.hasCards = false;
     if((this.turn || !game[this.opponent].hasCards) && this.hasCards) {
       this.turn = false;
       const cardPlayed = this.hand.splice(0, 1)[0];
@@ -20,19 +21,6 @@ class Player {
       return
     }
   }
-
-  // validateSlap(game) {
-  //   var validSlap;
-  //   if (game.isJack()) {
-  //     validSlap = true;
-  //   } else if (this.hasCards && game[this.opponent].hasCards && (isDouble() || isSandwich() || isWild())) {
-  //     validSlap = true;
-  //   } else {
-  //     validSlap = false;
-  //   }
-
-  //   return validSlap
-  // }
 
   slapPile(game) {
     game.validateSlap(this);
@@ -49,9 +37,10 @@ class Player {
     }
   }
 
-  forfeitCard(player) {
+  forfeitCard(game) {
     let topCard = this.hand.shift();
-    this.opponent.hand.push(topCard);
+    console.log(topCard)
+    game[this.opponent].hand.push(topCard);
   }
 
   addWin() {

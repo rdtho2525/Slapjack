@@ -61,11 +61,9 @@ class Game {
   };
 
   shuffleDeck(array) {
-    var randomNum;
-    var shuffler;
     for (let i = array.length - 1; i > 0; i--) {
-      randomNum = Math.floor(Math.random() * (i + 1));
-      shuffler = array[i];
+      let randomNum = Math.floor(Math.random() * (i + 1));
+      let shuffler = array[i];
       array[i] = array[randomNum];
       array[randomNum] = shuffler;
     }
@@ -73,7 +71,7 @@ class Game {
   }
 
   dealCards() {
-    let newDeck = this.shuffleDeck(this.deck);
+    const newDeck = this.shuffleDeck(this.deck);
     for (let i = newDeck.length-1; i >= 0; i--) {
       if (i % 2 === 0) {
         this.playerOne.hand.push(newDeck[i]);
@@ -110,7 +108,7 @@ class Game {
   }
 
   validateSlap(player) {
-    var validSlap;
+    let validSlap;
     if (this.isJack()) {
       validSlap = true;
     } else if (player.hasCards && this[player.opponent].hasCards && (this.isDouble() || this.isSandwich() || this.isWild())) {
@@ -127,20 +125,20 @@ class Game {
   }
 
   compileMessage(player) {
-    var action = checkAction();
-    var result = checkResult(action, this[player.id], this[player.opponent]);
-    var message = `${action.toUpperCase()}! ${player.name} ${result}!`;
+    const action = checkAction();
+    const result = checkResult(action, this[player.id], this[player.opponent]);
+    const message = `${action.toUpperCase()}! ${player.name} ${result}!`;
     return message
   }
 
   processSlap(player) {
     if (this.validateSlap(player)) {
-      player.takePile(player, this);
+      player.takePile(this);
       this.shuffleDeck(player.hand);
     } else if (!player.hasCards || !this[player.opponent].hasCards) {
       return false
     } else {
-      player.forfeitCard();
+      player.forfeitCard(this);
     }
   }
 
