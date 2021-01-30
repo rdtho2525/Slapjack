@@ -13,14 +13,6 @@ const unhide = (element, rule) => element.classList.remove(rule);
 
 const hideNotification = () => setTimeout(() => hide(actionNotifier, 'invisible'), 5000);
 
-(() => {
-  const players = [p1, p2];
-  players.forEach(player => {
-    console.log('sheesh')
-    player.hand.length > 0 ? player.hasCards = true : player.hasCards = false;
-  })
-})
-
 const proveEmptyHand = player => {
   const emptyHand = document.querySelector(`#${player.id}`);
   !player.hasCards ? hide(emptyHand, 'invisible') : unhide(emptyHand, 'invisible');  
