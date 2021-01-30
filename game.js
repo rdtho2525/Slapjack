@@ -63,7 +63,7 @@ class Game {
   shuffleDeck(array) {
     var randomNum;
     var shuffler;
-    for (var i = array.length - 1; i > 0; i--) {
+    for (let i = array.length - 1; i > 0; i--) {
       randomNum = Math.floor(Math.random() * (i + 1));
       shuffler = array[i];
       array[i] = array[randomNum];
@@ -73,8 +73,8 @@ class Game {
   }
 
   dealCards() {
-    var newDeck = this.shuffleDeck(this.deck);
-    for (var i = newDeck.length-1; i >= 0; i--) {
+    let newDeck = this.shuffleDeck(this.deck);
+    for (let i = newDeck.length-1; i >= 0; i--) {
       if (i % 2 === 0) {
         this.playerOne.hand.push(newDeck[i]);
         newDeck.splice(newDeck.indexOf(newDeck[i]), 1);
@@ -86,6 +86,46 @@ class Game {
     this.playerOne.turn = true
   }
 
+  isJack() {
+    const topCard = this.centerPile[0].value;
+    return topCard === 'jack'
+  }
+
+  isDouble() {
+    const topCard = this.centerPile[0].value;
+    const secondCard = this.centerPile[1].value;
+    return this.centerPile.length > 1 && topCard === secondCard;
+  }
+
+  isSandwich() {
+    const topCard = this.centerPile[0].value;
+    const thirdCard = this.centerPile[2].value;
+    return this.centerPile.length > 2 && topCard === thirdCard;
+  }
+
+  isWild() {
+    for (let i = 0; i < 3; i++) {
+      return this.centerPile[i].value === 'wild';
+    }
+  }
+
+  validateSlap(player) {
+    var validSlap;
+    if (this.isJack()) {
+      validSlap = true;
+    } else if (player.hasCards && this[player.opponent].hasCards && (this.isDouble() || this.isSandwich() || this.isWild())) {
+      validSlap = true;
+    } else {
+      validSlap = false;
+    }
+
+    return validSlap
+  }
+
+  clearPile() {
+    this.centerPile = [];
+  }
+
   compileMessage(player) {
     var action = checkAction();
     var result = checkResult(action, this[player.id], this[player.opponent]);
@@ -94,13 +134,13 @@ class Game {
   }
 
   processSlap(player) {
-    if (player.validateSlap(this)) {
-      takePile(player, this);
+    if (this.validateSlap(player)) {
+      player.takePile(player, this);
       this.shuffleDeck(player.hand);
-    } else if (!checkHand(player) || !checkHand(this[player.opponent])) {
+    } else if (!player.hasCards || !this[player.opponent].hasCards) {
       return false
     } else {
-      forfeitCard(player, this[player.opponent]);
+      player.forfeitCard();
     }
   }
 

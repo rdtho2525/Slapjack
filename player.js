@@ -2,17 +2,18 @@ class Player {
   constructor(id, name) {
     this.id = id;
     this.name = name;
-    this.wins = getWins(this) || 0;
+    this.wins = this.getWins() || 0;
     this.hand = [];
+    this.hasCards = !!this.hand;
     this.turn = false;
-    this.opponent = checkOpponent(this);
+    this.opponent = this.id === 'playerOne' ? 'playerTwo' : 'playerOne';
     this.isWinner = false;
   }
 
   playCard(game) {
-    if((this.turn || !checkHand(game[this.opponent])) && checkHand(this)) {
+    if((this.turn || !game[this.opponent].hasCards) && this.hasCards) {
       this.turn = false;
-      var cardPlayed = this.hand.splice(0, 1)[0];
+      const cardPlayed = this.hand.splice(0, 1)[0];
       game.centerPile.unshift(cardPlayed);
       game[this.opponent].turn = true;
     } else {
@@ -20,36 +21,53 @@ class Player {
     }
   }
 
-  validateSlap(game) {
-    var validSlap;
-    if (isJack()) {
-      validSlap = true;
-    } else if (checkHand(this) && checkHand(game[this.opponent]) && (isDouble() || isSandwich() || isWild())) {
-      validSlap = true;
-    } else {
-      validSlap = false;
-    }
+  // validateSlap(game) {
+  //   var validSlap;
+  //   if (game.isJack()) {
+  //     validSlap = true;
+  //   } else if (this.hasCards && game[this.opponent].hasCards && (isDouble() || isSandwich() || isWild())) {
+  //     validSlap = true;
+  //   } else {
+  //     validSlap = false;
+  //   }
 
-    return validSlap
-  }
+  //   return validSlap
+  // }
 
   slapPile(game) {
-    this.validateSlap(game);
+    game.validateSlap(this);
     game.processSlap(this);
-    if (this.validateSlap(game)) {
-      clearPile(game);
+    if (game.validateSlap(this)) {
+      game.clearPile();
       winGame(this, game[this.opponent]);
     }
+  }
+
+  takePile(game) {
+    for (let i = 0; i < game.centerPile.length; i++) {
+      this.hand.push(game.centerPile[i]);
+    }
+  }
+
+  forfeitCard(player) {
+    let topCard = this.hand.shift();
+    this.opponent.hand.push(topCard);
   }
 
   addWin() {
     this.wins++
   }
 
+  getWins() {
+    const localWins = localStorage.getItem(`${this.id}Wins`);
+    const parsedWins = JSON.parse(localWins);
+    return parsedWins
+  }
+
   saveWinsToStorage() {
     this.addWin();
-    var winsToStore = this.wins;
-    var strWins = JSON.stringify(winsToStore);
+    const winsToStore = this.wins;
+    const strWins = JSON.stringify(winsToStore);
     localStorage.setItem(`${this.id}Wins`, strWins);
   }
 }
